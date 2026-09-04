@@ -9,7 +9,7 @@ namespace NetworkBasics::common
         Descriptor(int value);
         
         Descriptor(Descriptor&&);
-        Descriptor& operator=(Descriptor&& other);
+        Descriptor& operator=(Descriptor&&);
 
         Descriptor(const Descriptor&) = delete;
         Descriptor& operator=(const Descriptor&) = delete;
