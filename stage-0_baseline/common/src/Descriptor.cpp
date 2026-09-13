@@ -39,7 +39,17 @@ int Descriptor::operator*() const
     return m_value;
 }
 
-bool Descriptor::operator<(const Descriptor& other) const
+bool DescriptorComparator::operator()(const Descriptor& lhs, const Descriptor& rhs) const
 {
-    return m_value < other.m_value;
+    return *lhs < *rhs;
+}
+
+bool DescriptorComparator::operator()(const Descriptor& lhs, int rhs) const
+{
+    return *lhs < rhs;
+}
+
+bool DescriptorComparator::operator()(int lhs, const Descriptor& rhs) const
+{
+    return lhs < *rhs;
 }

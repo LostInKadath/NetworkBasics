@@ -1,4 +1,5 @@
 #pragma once
+#include <set>
 
 namespace NetworkBasics::common
 {
@@ -18,9 +19,18 @@ namespace NetworkBasics::common
 
         int operator*() const;
 
-        bool operator<(const Descriptor& other) const;
-
     private:
         int m_value{ InvalidValue };
     };
+
+    struct DescriptorComparator
+    {
+        using is_transparent = void;
+
+        bool operator()(const Descriptor& lhs, const Descriptor& rhs) const;
+        bool operator()(const Descriptor& lhs, int rhs) const;
+        bool operator()(int lhs, const Descriptor& rhs) const;
+    };
+
+    using DescriptorSet = std::set<Descriptor, DescriptorComparator>;
 }
